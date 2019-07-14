@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-05T06:19:08.000Z</updated>
+  <updated>2019-05-29T15:50:45.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,16 +21,15 @@
     <link href="http://yoursite.com/2019/05/05/Hexo-Init/"/>
     <id>http://yoursite.com/2019/05/05/Hexo-Init/</id>
     <published>2019-05-05T05:50:19.000Z</published>
-    <updated>2019-05-05T06:19:08.000Z</updated>
+    <updated>2019-05-29T15:50:45.000Z</updated>
     
-    <content type="html"><![CDATA[<p>Init</p>]]></content>
+    <content type="html"><![CDATA[<p>Init<br><a href="http://www.baidu.com" target="_blank" rel="noopener">百度</a><img src="https://upload-images.jianshu.io/upload_images/1595396-d5140a97daa1bb35.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br><a href>Markdown 写作工具 Ulysses III 的三个实用技巧 - 少数派</a>(<a href="https://sspai.com/post/27470" target="_blank" rel="noopener">https://sspai.com/post/27470</a>)</p><h2 id="写作阶段"><a href="#写作阶段" class="headerlink" title="写作阶段"></a>写作阶段</h2><p>要标记某个_标题_，用一个或多个井号开始一行。井号的数量与标题的分层级别相对应。也就是说，为二级标题键入 <code>##</code>，为三级标题键入 <code>###</code>，以此类推。</p><p>如果您想_强调_某个字或短语，或将其标记为<strong>重要</strong>，您可以分别通过单下划线和双星号，或者使用快捷键<code>⌘B</code> 和 <code>⌘I</code> 来实现。</p><p>只需在直线开头键入短横线或数字，即可创建_有序_和<em>无序列表</em>。并且如果已在“编辑”菜单（编辑 › 替换）中启用“智能列表”，则列表将自动继续：</p><ul><li>这儿有</li><li>一个无序列表的</li><li>例子</li></ul><p>如果您想创建<em>引用块</em>，比如提供格言或突出显示更有名人物的名言，只需使用 <code>&gt;</code> 开始这一行：</p><blockquote><p>这是个人迈出的一小步，但却是人类迈出的一大步。<br>(Neil Armstrong)</p></blockquote><h2 id="利用分隔线，您可以进行分隔。比方说，对文本分段。"><a href="#利用分隔线，您可以进行分隔。比方说，对文本分段。" class="headerlink" title="利用分隔线，您可以进行分隔。比方说，对文本分段。"></a>利用<em>分隔线</em>，您可以进行分隔。比方说，对文本分段。</h2>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;Init&lt;/p&gt;
-
+        &lt;p&gt;Init&lt;br&gt;&lt;a href=&quot;http://www.baidu.com&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;百度&lt;/a&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/1595
       
     
     </summary>
