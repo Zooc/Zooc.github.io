@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="需要先创建MockOnClick注解、然后通过在Activity注入、在注入的方法里面，进行动态代理，但是要如何进行代理呢？activity的onClick如何被调用起来？需要有一个onClickListener,通过在注解上找到的一个id，设置onClickListener，然后调起Activity的onClick方法就可以了。 简单实现定义MockOnClickAnnotation123456">
+  <meta name="description" content="需要先创建MockOnClick注解、然后通过在Activity注入，在注入的方法里面，进行动态代理。 简单实现定义MockOnClickAnnotation1234567891011/** * @description: * @author: Kenny * @date: 2020-05-21 16:24 * @version: 1.0 */@Target(METHOD)@Retention(R">
 <meta name="keywords" content="java,java进阶">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2. 利用反射、注解、动态代理实现OnClick事件的自动注入">
+<meta property="og:title" content="利用反射、注解、动态代理实现OnClick事件的自动注入">
 <meta property="og:url" content="http://www.freelabor.work/2020/05/21/4821B42E-6850-43FC-9C6D-29188C8E3304/index.html">
 <meta property="og:site_name" content="GC World">
-<meta property="og:description" content="需要先创建MockOnClick注解、然后通过在Activity注入、在注入的方法里面，进行动态代理，但是要如何进行代理呢？activity的onClick如何被调用起来？需要有一个onClickListener,通过在注解上找到的一个id，设置onClickListener，然后调起Activity的onClick方法就可以了。 简单实现定义MockOnClickAnnotation123456">
+<meta property="og:description" content="需要先创建MockOnClick注解、然后通过在Activity注入，在注入的方法里面，进行动态代理。 简单实现定义MockOnClickAnnotation1234567891011/** * @description: * @author: Kenny * @date: 2020-05-21 16:24 * @version: 1.0 */@Target(METHOD)@Retention(R">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-05-27T03:48:54.490Z">
+<meta property="og:updated_time" content="2020-05-27T03:52:29.103Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2. 利用反射、注解、动态代理实现OnClick事件的自动注入">
-<meta name="twitter:description" content="需要先创建MockOnClick注解、然后通过在Activity注入、在注入的方法里面，进行动态代理，但是要如何进行代理呢？activity的onClick如何被调用起来？需要有一个onClickListener,通过在注解上找到的一个id，设置onClickListener，然后调起Activity的onClick方法就可以了。 简单实现定义MockOnClickAnnotation123456">
+<meta name="twitter:title" content="利用反射、注解、动态代理实现OnClick事件的自动注入">
+<meta name="twitter:description" content="需要先创建MockOnClick注解、然后通过在Activity注入，在注入的方法里面，进行动态代理。 简单实现定义MockOnClickAnnotation1234567891011/** * @description: * @author: Kenny * @date: 2020-05-21 16:24 * @version: 1.0 */@Target(METHOD)@Retention(R">
 
 
   
@@ -129,7 +129,7 @@
   };
 </script>
 
-  <title>2. 利用反射、注解、动态代理实现OnClick事件的自动注入 | GC World</title>
+  <title>利用反射、注解、动态代理实现OnClick事件的自动注入 | GC World</title>
   
 
 
@@ -413,7 +413,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">2. 利用反射、注解、动态代理实现OnClick事件的自动注入
+          <h1 class="post-title" itemprop="name headline">利用反射、注解、动态代理实现OnClick事件的自动注入
 
               
             
@@ -456,7 +456,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2020-05-27 11:48:54" itemprop="dateModified" datetime="2020-05-27T11:48:54+08:00">2020-05-27</time>
+                <time title="Modified: 2020-05-27 11:52:29" itemprop="dateModified" datetime="2020-05-27T11:52:29+08:00">2020-05-27</time>
               
             
           </span>
@@ -490,7 +490,7 @@
       
 
       
-        <p>需要先创建MockOnClick注解、然后通过在Activity注入、在注入的方法里面，进行动态代理，但是要如何进行代理呢？activity的onClick如何被调用起来？需要有一个onClickListener,通过在注解上找到的一个id，设置onClickListener，然后调起Activity的onClick方法就可以了。</p>
+        <p>需要先创建MockOnClick注解、然后通过在Activity注入，在注入的方法里面，进行动态代理。</p>
 <h1 id="简单实现"><a href="#简单实现" class="headerlink" title="简单实现"></a>简单实现</h1><h2 id="定义MockOnClickAnnotation"><a href="#定义MockOnClickAnnotation" class="headerlink" title="定义MockOnClickAnnotation"></a>定义MockOnClickAnnotation</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span>:</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: Kenny</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2020-05-21 16:24</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@version</span>: 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Target</span>(METHOD)</span><br><span class="line"><span class="meta">@Retention</span>(RUNTIME)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MockOnClickAnnotation &#123;</span><br><span class="line">    <span class="meta">@IdRes</span> <span class="keyword">int</span>[] value();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="创建ClickEventInjector"><a href="#创建ClickEventInjector" class="headerlink" title="创建ClickEventInjector"></a>创建ClickEventInjector</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span>:</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: Kenny</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2020-05-21 16:21</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@version</span>: 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClickEventInjector</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">ClickEventInjector</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> AssertionError();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">inject</span><span class="params">(<span class="keyword">final</span> Activity activity)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 获取所有的Field：&#123;<span class="doctag">@link</span> Class#getDeclaredMethods()&#125; ()&#125; —&gt; methods</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        Method[] methods = activity.getClass().getDeclaredMethods();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 遍历fields:&#123;<span class="doctag">@link</span> Method[]&#125;,过滤有&#123;<span class="doctag">@link</span> MockOnClickAnnotation&#125;的&#123;<span class="doctag">@link</span> Method&#125;</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">for</span> (Method method :</span><br><span class="line">                methods) &#123;</span><br><span class="line">            <span class="keyword">if</span> (method.isAnnotationPresent(MockOnClickAnnotation.class)) &#123;</span><br><span class="line">                MockOnClickAnnotation annotation = method.getAnnotation(MockOnClickAnnotation.class);</span><br><span class="line">                <span class="keyword">int</span>[] ids = annotation.value();</span><br><span class="line">                <span class="keyword">for</span> (Integer id :</span><br><span class="line">                        ids) &#123;</span><br><span class="line">                    <span class="keyword">final</span> View view = activity.findViewById(id);</span><br><span class="line"></span><br><span class="line">                    <span class="comment">//    使用动态代理进行实现</span></span><br><span class="line">                    <span class="keyword">final</span> View.OnClickListener l = (View.OnClickListener) Proxy.newProxyInstance(activity.getClassLoader(), <span class="keyword">new</span> Class[]&#123;View.OnClickListener.class&#125;, <span class="keyword">new</span> InvocationHandler() &#123;</span><br><span class="line">                        <span class="meta">@Override</span></span><br><span class="line">                        <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">                            <span class="keyword">return</span> method.invoke(activity, args);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;);</span><br><span class="line">                    view.setOnClickListener(l);</span><br><span class="line"></span><br><span class="line">                    <span class="comment">/**</span></span><br><span class="line"><span class="comment">                     * 在这里，&#123;<span class="doctag">@link</span> View&#125;可以设置点击监听，但是需要有一个代理响应才行，</span></span><br><span class="line"><span class="comment">                     * &#123;<span class="doctag">@link</span> Activity&#125;本身没有点击事件，所以需要用&#123;<span class="doctag">@link</span> View.OnClickListener&#125;才行</span></span><br><span class="line"><span class="comment">                     */</span></span><br><span class="line"><span class="comment">//                    view.setOnClickListener(new View.OnClickListener() &#123;</span></span><br><span class="line"><span class="comment">//                        @Override</span></span><br><span class="line"><span class="comment">//                        public void onClick(View v) &#123;</span></span><br><span class="line"><span class="comment">//                            /**</span></span><br><span class="line"><span class="comment">//                             * 这里是不是可以这样执行呢？其实这样也是可以的</span></span><br><span class="line"><span class="comment">//                             */</span></span><br><span class="line"><span class="comment">//                            if (activity instanceof View.OnClickListener) &#123;</span></span><br><span class="line"><span class="comment">//                                ((View.OnClickListener) activity).onClick(view);</span></span><br><span class="line"><span class="comment">//                            &#125;</span></span><br><span class="line"><span class="comment">//                        &#125;</span></span><br><span class="line"><span class="comment">//                    &#125;);</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="高级实现"><a href="#高级实现" class="headerlink" title="高级实现"></a>高级实现</h1><p>如果是想要将点击和长按点击都实现在里面呢？那么这个时候就要优化一下才行了。<br>需要多创建一个点击事件的元注解</p>
@@ -548,8 +548,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/05/19/5E1BDC3B-57B1-4395-92D8-8B6AD5C4BA3D/" rel="next" title="1. 实现Intent注入工具">
-                <i class="fa fa-chevron-left"></i> 1. 实现Intent注入工具
+              <a href="/2020/05/19/5E1BDC3B-57B1-4395-92D8-8B6AD5C4BA3D/" rel="next" title="实现Intent注入工具">
+                <i class="fa fa-chevron-left"></i> 实现Intent注入工具
               </a>
             
           </div>
