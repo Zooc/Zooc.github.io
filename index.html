@@ -394,6 +394,155 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.freelabor.work/2020/06/02/A0C7D1BC-B847-4445-AACD-F0D539724A25/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="GC">
+      <meta itemprop="description" content="Seeking the World!">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GC World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/06/02/A0C7D1BC-B847-4445-AACD-F0D539724A25/" class="post-title-link" itemprop="url">输出Java的Stack Element信息</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-06-02 10:46:01 / Modified: 11:01:28" itemprop="dateCreated datePublished" datetime="2020-06-02T10:46:01+08:00">2020-06-02</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="在main-上运行"><a href="#在main-上运行" class="headerlink" title="在main()上运行"></a>在main()上运行</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestStackElement</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 当在main方法运行时</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * &#123;<span class="doctag">@link</span> Thread#currentThread()&#125;</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        Thread currentThread = Thread.currentThread();</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * &lt;p&gt;</span></span><br><span class="line"><span class="comment">         *     console:</span></span><br><span class="line"><span class="comment">         *     Thread[main,5,main]</span></span><br><span class="line"><span class="comment">         * &lt;/p&gt;</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        System.out.println(currentThread);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * &#123;<span class="doctag">@link</span> Thread#getStackTrace()&#125;</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        StackTraceElement[] stackTrace = currentThread.getStackTrace();</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * &lt;p&gt;</span></span><br><span class="line"><span class="comment">         *     console:</span></span><br><span class="line"><span class="comment">         *     2</span></span><br><span class="line"><span class="comment">         * &lt;/p&gt;</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        System.out.println(stackTrace.length);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * &lt;p&gt;</span></span><br><span class="line"><span class="comment">         *     console:</span></span><br><span class="line"><span class="comment">         *      java.lang.Thread.getStackTrace(Thread.java:1559)</span></span><br><span class="line"><span class="comment">         *      test.TestStackElement.main(TestStackElement.java:25)</span></span><br><span class="line"><span class="comment">         * &lt;/p&gt;</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">for</span> (StackTraceElement ste :</span><br><span class="line">                stackTrace) &#123;</span><br><span class="line">            System.out.println(ste);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        StackTraceElement topStackTraceElement = stackTrace[stackTrace.length - <span class="number">1</span>];</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * &lt;p&gt;</span></span><br><span class="line"><span class="comment">         *     console:</span></span><br><span class="line"><span class="comment">         *     main</span></span><br><span class="line"><span class="comment">         * &lt;/p&gt;</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        System.out.println(topStackTraceElement.getMethodName());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="被main-直接调用"><a href="#被main-直接调用" class="headerlink" title="被main()直接调用"></a>被main()直接调用</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    testMethod();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 当main()—&gt; testMethod()</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &#123;<span class="doctag">@link</span> Thread#currentThread()&#125;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    Thread currentThread = Thread.currentThread();</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;</span></span><br><span class="line"><span class="comment">     *     console:</span></span><br><span class="line"><span class="comment">     *     Thread[main,5,main]</span></span><br><span class="line"><span class="comment">     * &lt;/p&gt;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    System.out.println(currentThread);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &#123;<span class="doctag">@link</span> Thread#getStackTrace()&#125;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    StackTraceElement[] stackTrace = currentThread.getStackTrace();</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;</span></span><br><span class="line"><span class="comment">     *     console:</span></span><br><span class="line"><span class="comment">     *     3</span></span><br><span class="line"><span class="comment">     * &lt;/p&gt;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    System.out.println(stackTrace.length);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;</span></span><br><span class="line"><span class="comment">     *     console:</span></span><br><span class="line"><span class="comment">     *      java.lang.Thread.getStackTrace(Thread.java:1559)</span></span><br><span class="line"><span class="comment">     *      test.TestStackElement.testMethod(TestStackElement.java:28)</span></span><br><span class="line"><span class="comment">     *      test.TestStackElement.main(TestStackElement.java:6)</span></span><br><span class="line"><span class="comment">     * &lt;/p&gt;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">for</span> (StackTraceElement ste :</span><br><span class="line">            stackTrace) &#123;</span><br><span class="line">        System.out.println(ste);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    StackTraceElement topStackTraceElement = stackTrace[stackTrace.length - <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;</span></span><br><span class="line"><span class="comment">     *     console:</span></span><br><span class="line"><span class="comment">     *     -----top-----</span></span><br><span class="line"><span class="comment">     *      main</span></span><br><span class="line"><span class="comment">     *      test.TestStackElement</span></span><br><span class="line"><span class="comment">     *      TestStackElement.java</span></span><br><span class="line"><span class="comment">     *      6</span></span><br><span class="line"><span class="comment">     * &lt;/p&gt;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    System.out.println(<span class="string">"-----top-----"</span>);</span><br><span class="line">    System.out.println(topStackTraceElement.getMethodName());</span><br><span class="line">    System.out.println(topStackTraceElement.getClassName());</span><br><span class="line">    System.out.println(topStackTraceElement.getFileName());</span><br><span class="line">    System.out.println(topStackTraceElement.getLineNumber());</span><br><span class="line"></span><br><span class="line">    StackTraceElement secondTopStackTraceElement = stackTrace[stackTrace.length - <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;</span></span><br><span class="line"><span class="comment">     *     console:</span></span><br><span class="line"><span class="comment">     *     -----second top-----</span></span><br><span class="line"><span class="comment">     *      testMethod</span></span><br><span class="line"><span class="comment">     *      test.TestStackElement</span></span><br><span class="line"><span class="comment">     *      TestStackElement.java</span></span><br><span class="line"><span class="comment">     *      28  ：&#123;<span class="doctag">@link</span> currentThread.getStackTrace()&#125;的位置</span></span><br><span class="line"><span class="comment">     * &lt;/p&gt;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    System.out.println(<span class="string">"-----second top-----"</span>);</span><br><span class="line">    System.out.println(secondTopStackTraceElement.getMethodName());</span><br><span class="line">    System.out.println(secondTopStackTraceElement.getClassName());</span><br><span class="line">    System.out.println(secondTopStackTraceElement.getFileName());</span><br><span class="line">    System.out.println(secondTopStackTraceElement.getLineNumber());</span><br><span class="line"></span><br><span class="line">    StackTraceElement firstStackTraceElement = stackTrace[<span class="number">0</span>];</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;</span></span><br><span class="line"><span class="comment">     *     console:</span></span><br><span class="line"><span class="comment">     *     -----first-----</span></span><br><span class="line"><span class="comment">     *      getStackTrace</span></span><br><span class="line"><span class="comment">     *      java.lang.Thread</span></span><br><span class="line"><span class="comment">     *      Thread.java</span></span><br><span class="line"><span class="comment">     *      1559 : &#123;<span class="doctag">@link</span> Thread&#125;第1559行</span></span><br><span class="line"><span class="comment">     *      &lt;code&gt;</span></span><br><span class="line"><span class="comment">     *                      return (new Exception()).getStackTrace();</span></span><br><span class="line"><span class="comment">     *      &lt;/code&gt;</span></span><br><span class="line"><span class="comment">     * &lt;/p&gt;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    System.out.println(<span class="string">"-----first-----"</span>);</span><br><span class="line">    System.out.println(firstStackTraceElement.getMethodName());</span><br><span class="line">    System.out.println(firstStackTraceElement.getClassName());</span><br><span class="line">    System.out.println(firstStackTraceElement.getFileName());</span><br><span class="line">    System.out.println(firstStackTraceElement.getLineNumber());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="被main-间接调用"><a href="#被main-间接调用" class="headerlink" title="被main()间接调用"></a>被main()间接调用</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    testInterMethod();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testInterMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    testMethod();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 当&#123;<span class="doctag">@link</span> #main(String[])&#125;—&gt; &#123;<span class="doctag">@link</span> #testInterMethod()&#125;—&gt; &#123;<span class="doctag">@link</span> #testMethod()&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &#123;<span class="doctag">@link</span> Thread#currentThread()&#125;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    Thread currentThread = Thread.currentThread();</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;</span></span><br><span class="line"><span class="comment">     *     console:</span></span><br><span class="line"><span class="comment">     *     Thread[main,5,main]</span></span><br><span class="line"><span class="comment">     * &lt;/p&gt;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    System.out.println(currentThread);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &#123;<span class="doctag">@link</span> Thread#getStackTrace()&#125;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    StackTraceElement[] stackTrace = currentThread.getStackTrace();</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;</span></span><br><span class="line"><span class="comment">     *     console:</span></span><br><span class="line"><span class="comment">     *     4</span></span><br><span class="line"><span class="comment">     * &lt;/p&gt;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    System.out.println(stackTrace.length);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;</span></span><br><span class="line"><span class="comment">     *     console:</span></span><br><span class="line"><span class="comment">     *      java.lang.Thread.getStackTrace(Thread.java:1559)</span></span><br><span class="line"><span class="comment">     *      test.TestStackElement.testMethod(TestStackElement.java:32)</span></span><br><span class="line"><span class="comment">     *      test.TestStackElement.testInterMethod(TestStackElement.java:10)</span></span><br><span class="line"><span class="comment">     *      test.TestStackElement.main(TestStackElement.java:6)</span></span><br><span class="line"><span class="comment">     * &lt;/p&gt;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">for</span> (StackTraceElement ste :</span><br><span class="line">            stackTrace) &#123;</span><br><span class="line">        System.out.println(ste);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    StackTraceElement topStackTraceElement = stackTrace[stackTrace.length - <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;</span></span><br><span class="line"><span class="comment">     *     console:</span></span><br><span class="line"><span class="comment">     *     -----top-----</span></span><br><span class="line"><span class="comment">     *      main</span></span><br><span class="line"><span class="comment">     *      test.TestStackElement</span></span><br><span class="line"><span class="comment">     *      TestStackElement.java</span></span><br><span class="line"><span class="comment">     *      6</span></span><br><span class="line"><span class="comment">     * &lt;/p&gt;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    System.out.println(<span class="string">"-----top-----"</span>);</span><br><span class="line">    System.out.println(topStackTraceElement.getMethodName());</span><br><span class="line">    System.out.println(topStackTraceElement.getClassName());</span><br><span class="line">    System.out.println(topStackTraceElement.getFileName());</span><br><span class="line">    System.out.println(topStackTraceElement.getLineNumber());</span><br><span class="line"></span><br><span class="line">    StackTraceElement secondTopStackTraceElement = stackTrace[stackTrace.length - <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;</span></span><br><span class="line"><span class="comment">     *     console:</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     *     -----second top-----</span></span><br><span class="line"><span class="comment">     *      testInterMethod</span></span><br><span class="line"><span class="comment">     *      test.TestStackElement</span></span><br><span class="line"><span class="comment">     *      TestStackElement.java</span></span><br><span class="line"><span class="comment">     *      10</span></span><br><span class="line"><span class="comment">     * &lt;/p&gt;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    System.out.println(<span class="string">"-----second top-----"</span>);</span><br><span class="line">    System.out.println(secondTopStackTraceElement.getMethodName());</span><br><span class="line">    System.out.println(secondTopStackTraceElement.getClassName());</span><br><span class="line">    System.out.println(secondTopStackTraceElement.getFileName());</span><br><span class="line">    System.out.println(secondTopStackTraceElement.getLineNumber());</span><br><span class="line"></span><br><span class="line">    StackTraceElement thirdTopStackTraceElement = stackTrace[stackTrace.length - <span class="number">3</span>];</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;</span></span><br><span class="line"><span class="comment">     *     console:</span></span><br><span class="line"><span class="comment">     *      -----third top-----</span></span><br><span class="line"><span class="comment">     *          testMethod</span></span><br><span class="line"><span class="comment">     *          test.TestStackElement</span></span><br><span class="line"><span class="comment">     *          TestStackElement.java</span></span><br><span class="line"><span class="comment">     *          32 ：&#123;<span class="doctag">@link</span> currentThread.getStackTrace()&#125;的位置</span></span><br><span class="line"><span class="comment">     * &lt;/p&gt;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    System.out.println(<span class="string">"-----third top-----"</span>);</span><br><span class="line">    System.out.println(thirdTopStackTraceElement.getMethodName());</span><br><span class="line">    System.out.println(thirdTopStackTraceElement.getClassName());</span><br><span class="line">    System.out.println(thirdTopStackTraceElement.getFileName());</span><br><span class="line">    System.out.println(thirdTopStackTraceElement.getLineNumber());</span><br><span class="line"></span><br><span class="line">    StackTraceElement firstStackTraceElement = stackTrace[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;</span></span><br><span class="line"><span class="comment">     *     console:</span></span><br><span class="line"><span class="comment">     *     -----first-----</span></span><br><span class="line"><span class="comment">     *      getStackTrace</span></span><br><span class="line"><span class="comment">     *      java.lang.Thread</span></span><br><span class="line"><span class="comment">     *      Thread.java</span></span><br><span class="line"><span class="comment">     *      1559 : &#123;<span class="doctag">@link</span> Thread&#125;第1559行</span></span><br><span class="line"><span class="comment">     *      &lt;code&gt;</span></span><br><span class="line"><span class="comment">     *                      return (new Exception()).getStackTrace();</span></span><br><span class="line"><span class="comment">     *      &lt;/code&gt;</span></span><br><span class="line"><span class="comment">     * &lt;/p&gt;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    System.out.println(<span class="string">"-----first-----"</span>);</span><br><span class="line">    System.out.println(firstStackTraceElement.getMethodName());</span><br><span class="line">    System.out.println(firstStackTraceElement.getClassName());</span><br><span class="line">    System.out.println(firstStackTraceElement.getFileName());</span><br><span class="line">    System.out.println(firstStackTraceElement.getLineNumber());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+<div>
+  
+</div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.freelabor.work/2020/05/21/4821B42E-6850-43FC-9C6D-29188C8E3304/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -456,7 +605,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2020-05-27 11:52:29" itemprop="dateModified" datetime="2020-05-27T11:52:29+08:00">2020-05-27</time>
+                <time title="Modified: 2020-06-02 11:01:28" itemprop="dateModified" datetime="2020-06-02T11:01:28+08:00">2020-06-02</time>
               
             
           </span>
@@ -623,7 +772,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2020-05-27 11:52:29" itemprop="dateModified" datetime="2020-05-27T11:52:29+08:00">2020-05-27</time>
+                <time title="Modified: 2020-06-02 11:01:28" itemprop="dateModified" datetime="2020-06-02T11:01:28+08:00">2020-06-02</time>
               
             
           </span>
@@ -794,7 +943,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2020-05-27 11:52:29" itemprop="dateModified" datetime="2020-05-27T11:52:29+08:00">2020-05-27</time>
+                <time title="Modified: 2020-06-02 11:01:28" itemprop="dateModified" datetime="2020-06-02T11:01:28+08:00">2020-06-02</time>
               
             
           </span>
@@ -920,7 +1069,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
