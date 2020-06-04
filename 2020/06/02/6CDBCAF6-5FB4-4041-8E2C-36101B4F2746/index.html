@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="定义注解12345@Target(ElementType.FIELD)@Retention(RetentionPolicy.RUNTIME)public @interface InjectView &amp;#123;    @IdRes int value();&amp;#125; 定义注入工具类1234567891011121314151617181920212223242526272829303132333">
-<meta name="keywords" content="java,java进阶">
+  <meta name="description" content="给路由起一个名字，然后可以通过路由名字直接打开新的路由。 注册路由123456789101112131415class NameRouteApp extends StatelessWidget &amp;#123;  @override  Widget build(BuildContext context) &amp;#123;    return MaterialApp(      title: &quot;Flutte">
+<meta name="keywords" content="￼￼￼￼flutter, flutter-路由">
 <meta property="og:type" content="article">
-<meta property="og:title" content="模仿ButterKnife的BindView">
-<meta property="og:url" content="http://www.freelabor.work/2020/05/19/F608C5DA-7844-41C9-B5CB-9306298CEDEF/index.html">
+<meta property="og:title" content="2.2 Flutter-命名路由">
+<meta property="og:url" content="http://www.freelabor.work/2020/06/02/6CDBCAF6-5FB4-4041-8E2C-36101B4F2746/index.html">
 <meta property="og:site_name" content="GC World">
-<meta property="og:description" content="定义注解12345@Target(ElementType.FIELD)@Retention(RetentionPolicy.RUNTIME)public @interface InjectView &amp;#123;    @IdRes int value();&amp;#125; 定义注入工具类1234567891011121314151617181920212223242526272829303132333">
+<meta property="og:description" content="给路由起一个名字，然后可以通过路由名字直接打开新的路由。 注册路由123456789101112131415class NameRouteApp extends StatelessWidget &amp;#123;  @override  Widget build(BuildContext context) &amp;#123;    return MaterialApp(      title: &quot;Flutte">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-06-04T06:51:06.299Z">
+<meta property="og:updated_time" content="2020-06-04T06:51:06.294Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="模仿ButterKnife的BindView">
-<meta name="twitter:description" content="定义注解12345@Target(ElementType.FIELD)@Retention(RetentionPolicy.RUNTIME)public @interface InjectView &amp;#123;    @IdRes int value();&amp;#125; 定义注入工具类1234567891011121314151617181920212223242526272829303132333">
+<meta name="twitter:title" content="2.2 Flutter-命名路由">
+<meta name="twitter:description" content="给路由起一个名字，然后可以通过路由名字直接打开新的路由。 注册路由123456789101112131415class NameRouteApp extends StatelessWidget &amp;#123;  @override  Widget build(BuildContext context) &amp;#123;    return MaterialApp(      title: &quot;Flutte">
 
 
 
@@ -117,7 +117,7 @@
 
   
   
-  <link rel="canonical" href="http://www.freelabor.work/2020/05/19/F608C5DA-7844-41C9-B5CB-9306298CEDEF/">
+  <link rel="canonical" href="http://www.freelabor.work/2020/06/02/6CDBCAF6-5FB4-4041-8E2C-36101B4F2746/">
 
 
 
@@ -127,7 +127,7 @@
   };
 </script>
 
-  <title>模仿ButterKnife的BindView | GC World</title>
+  <title>2.2 Flutter-命名路由 | GC World</title>
   
 
 
@@ -394,7 +394,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.freelabor.work/2020/05/19/F608C5DA-7844-41C9-B5CB-9306298CEDEF/">
+    <link itemprop="mainEntityOfPage" href="http://www.freelabor.work/2020/06/02/6CDBCAF6-5FB4-4041-8E2C-36101B4F2746/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="GC">
@@ -411,7 +411,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">模仿ButterKnife的BindView
+          <h1 class="post-title" itemprop="name headline">2.2 Flutter-命名路由
 
               
             
@@ -437,7 +437,7 @@
                 
               
 
-              <time title="Created: 2020-05-19 15:50:41" itemprop="dateCreated datePublished" datetime="2020-05-19T15:50:41+08:00">2020-05-19</time>
+              <time title="Created: 2020-06-02 15:40:53" itemprop="dateCreated datePublished" datetime="2020-06-02T15:40:53+08:00">2020-06-02</time>
             
 
             
@@ -488,9 +488,11 @@
       
 
       
-        <h1 id="定义注解"><a href="#定义注解" class="headerlink" title="定义注解"></a>定义注解</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.FIELD)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> InjectView &#123;</span><br><span class="line">    <span class="meta">@IdRes</span> <span class="function"><span class="keyword">int</span> <span class="title">value</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="定义注入工具类"><a href="#定义注入工具类" class="headerlink" title="定义注入工具类"></a>定义注入工具类</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InjectUtils</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">InjectUtils</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//no instance</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">inject</span><span class="params">(Activity activity)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 获取所有成员变量</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        Field[] declaredFields = activity.getClass().getDeclaredFields();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (declaredFields != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (Field f :</span><br><span class="line">                    declaredFields) &#123;</span><br><span class="line">                <span class="keyword">if</span> (f != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="comment">/**</span></span><br><span class="line"><span class="comment">                     * 判断是否存在&#123;<span class="doctag">@link</span> InjectView&#125;的注解</span></span><br><span class="line"><span class="comment">                     */</span></span><br><span class="line">                    <span class="keyword">if</span> (f.isAnnotationPresent(InjectView.class)) &#123;</span><br><span class="line">                        InjectView annotation = f.getAnnotation(InjectView.class);<span class="comment">//    拿到对应的注解</span></span><br><span class="line">                        <span class="keyword">int</span> id = ((InjectView) annotation).value();<span class="comment">//    获取到对应的id值</span></span><br><span class="line">                        View v = activity.findViewById(id);<span class="comment">//    通过activity找到view</span></span><br><span class="line">                        <span class="keyword">try</span> &#123;</span><br><span class="line">                            f.setAccessible(<span class="keyword">true</span>);<span class="comment">//    暴力设置成员变量可访问</span></span><br><span class="line">                            f.set(activity, v);<span class="comment">//    通过反射设置成员变量的值</span></span><br><span class="line">                        &#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</span><br><span class="line">                            e.printStackTrace();</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="在Activity页面使用注解并且初始化注入方法"><a href="#在Activity页面使用注解并且初始化注入方法" class="headerlink" title="在Activity页面使用注解并且初始化注入方法"></a>在Activity页面使用注解并且初始化注入方法</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class MainActivity : AppCompatActivity() &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@InjectView</span>(R.id.nav_view)</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> navView: BottomNavigationView? = <span class="keyword">null</span>;</span><br><span class="line">    </span><br><span class="line">     <span class="function">override fun <span class="title">onCreate</span><span class="params">(savedInstanceState: Bundle?)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_main)</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//    自定义注入工具</span></span><br><span class="line">        InjectUtils.inject(<span class="keyword">this</span>)</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>给路由起一个名字，然后可以通过路由名字直接打开新的路由。</p>
+<h1 id="注册路由"><a href="#注册路由" class="headerlink" title="注册路由"></a>注册路由</h1><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NameRouteApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">"Flutter Named Router Demo"</span>,</span><br><span class="line"></span><br><span class="line">      <span class="comment">/// 注册路由表</span></span><br><span class="line">      routes: &#123;</span><br><span class="line">        <span class="comment">/// ‘/’是一个特殊地质，特指第一个页面</span></span><br><span class="line">        <span class="string">"/"</span>: (context) =&gt; MainNamedRoute(),</span><br><span class="line">        <span class="string">"second_page"</span>: (context) =&gt; SecondNamedRoutePage(),</span><br><span class="line">      &#125;,</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="通过Navigator-pushNamed-跳转到下一页"><a href="#通过Navigator-pushNamed-跳转到下一页" class="headerlink" title="通过Navigator.pushNamed()跳转到下一页"></a>通过<code>Navigator.pushNamed()</code>跳转到下一页</h1><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainNamedRoute</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(<span class="string">"命名路由的主页"</span>),</span><br><span class="line">      ),</span><br><span class="line">      body: Column(</span><br><span class="line">        children: &lt;Widget&gt;[</span><br><span class="line">          Text(<span class="string">"主页第一行"</span>),</span><br><span class="line">          RaisedButton(</span><br><span class="line">            onPressed: () &#123;</span><br><span class="line">              Navigator.pushNamed(context, <span class="string">"second_page"</span>);</span><br><span class="line">            &#125;,</span><br><span class="line">            child: Text(<span class="string">"进入命名路由的第二个页面"</span>),</span><br><span class="line">          ),</span><br><span class="line">        ],</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="简单结束页面Navigator-pop"><a href="#简单结束页面Navigator-pop" class="headerlink" title="简单结束页面Navigator.pop()"></a>简单结束页面<code>Navigator.pop()</code></h1><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SecondNamedRoutePage</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(<span class="string">"命名路由第二个页面"</span>),</span><br><span class="line">      ),</span><br><span class="line">      body: Column(</span><br><span class="line">        children: &lt;Widget&gt;[</span><br><span class="line">          Text(<span class="string">"第二页的第一行"</span>),</span><br><span class="line">          RaisedButton(</span><br><span class="line">            onPressed: () &#123;</span><br><span class="line">              <span class="comment">//    结束当前页面</span></span><br><span class="line">              Navigator.pop(context);</span><br><span class="line">            &#125;,</span><br><span class="line">            child: Text(<span class="string">"结束当前页面"</span>),</span><br><span class="line">          ),</span><br><span class="line">        ],</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h1><p>优点：可以通过语义化的字符串来管理路由。<br>缺点：不能直接传递路由参数。</p>
 
       
     </div>
@@ -525,9 +527,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
+            <a href="/tags/￼￼￼￼flutter/" rel="tag"><i class="fa fa-tag"></i> ￼￼￼￼flutter</a>
           
-            <a href="/tags/java进阶/" rel="tag"><i class="fa fa-tag"></i> java进阶</a>
+            <a href="/tags/flutter-路由/" rel="tag"><i class="fa fa-tag"></i>  flutter-路由</a>
           
         </div>
       
@@ -540,14 +542,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2020/06/02/AC69EF57-F25D-4CD1-B0F6-6634782E73F8/" rel="next" title="2.1 Flutter-路由导航">
+                <i class="fa fa-chevron-left"></i> 2.1 Flutter-路由导航
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/05/19/5E1BDC3B-57B1-4395-92D8-8B6AD5C4BA3D/" rel="prev" title="实现Intent注入工具">
-                实现Intent注入工具 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/06/03/CDE851D8-1C0F-4777-8091-165FA1600362/" rel="prev" title="2.3 自定义路由切换动画">
+                2.3 自定义路由切换动画 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -691,7 +697,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#定义注解"><span class="nav-number">1.</span> <span class="nav-text">定义注解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义注入工具类"><span class="nav-number">2.</span> <span class="nav-text">定义注入工具类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在Activity页面使用注解并且初始化注入方法"><span class="nav-number">3.</span> <span class="nav-text">在Activity页面使用注解并且初始化注入方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#注册路由"><span class="nav-number">1.</span> <span class="nav-text">注册路由</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#通过Navigator-pushNamed-跳转到下一页"><span class="nav-number">2.</span> <span class="nav-text">通过Navigator.pushNamed()跳转到下一页</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#简单结束页面Navigator-pop"><span class="nav-number">3.</span> <span class="nav-text">简单结束页面Navigator.pop()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#优缺点"><span class="nav-number">4.</span> <span class="nav-text">优缺点</span></a></li></ol></div>
             
 
           </div>

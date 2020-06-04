@@ -394,6 +394,680 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.freelabor.work/2020/06/03/410EFDCD-47D7-47C7-BB88-EECF5F6BFF81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="GC">
+      <meta itemprop="description" content="Seeking the World!">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GC World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/06/03/410EFDCD-47D7-47C7-BB88-EECF5F6BFF81/" class="post-title-link" itemprop="url">2.4 Flutter-路由-注意事项</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-06-03 16:06:24" itemprop="dateCreated datePublished" datetime="2020-06-03T16:06:24+08:00">2020-06-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-06-04 14:51:06" itemprop="dateModified" datetime="2020-06-04T14:51:06+08:00">2020-06-04</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="出现问题的情况"><a href="#出现问题的情况" class="headerlink" title="出现问题的情况"></a>出现问题的情况</h1><p>如果直接在第一个Widget内进行跳转，就会出现问题：<code>Navigator operation requested with a context that does not include a Navigator.</code><br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'dart:io'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/foundation.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 路由注意事项</span></span><br><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  FlutterError.onError = (FlutterErrorDetails details) &#123;</span><br><span class="line">    FlutterError.dumpErrorToConsole(details);</span><br><span class="line">    <span class="keyword">if</span> (kReleaseMode) exit(<span class="number">1</span>);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/// [StatelessWidget]</span></span><br><span class="line">  runApp(RouteApp());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RouteApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">"Flutter navigator attention problem occurs"</span>,</span><br><span class="line">      home: Scaffold(</span><br><span class="line">        appBar: AppBar(</span><br><span class="line">          title: Text(<span class="string">"主页：有问题的"</span>),</span><br><span class="line">        ),</span><br><span class="line">        body: Column(</span><br><span class="line">          children: &lt;Widget&gt;[</span><br><span class="line">            Text(<span class="string">"第一行"</span>),</span><br><span class="line">            RaisedButton(</span><br><span class="line">              onPressed: () &#123;</span><br><span class="line">                <span class="comment">/**</span></span><br><span class="line"><span class="comment">                 * 报错</span></span><br><span class="line"><span class="comment">                    ════════ Exception caught by gesture ═══════════════════════════════════════════════════════════════</span></span><br><span class="line"><span class="comment">                    The following assertion was thrown while handling a gesture:</span></span><br><span class="line"><span class="comment">                    Navigator operation requested with a context that does not include a Navigator.</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">                    The context used to push or pop routes from the Navigator must be that of a widget that is a descendant of a Navigator widget.</span></span><br><span class="line"><span class="comment">                    When the exception was thrown, this was the stack:</span></span><br><span class="line"><span class="comment">                    #0      Navigator.of.&lt;anonymous closure&gt; (package:flutter/src/widgets/navigator.dart:1495:9)</span></span><br><span class="line"><span class="comment">                    #1      Navigator.of (package:flutter/src/widgets/navigator.dart:1502:6)</span></span><br><span class="line"><span class="comment">                    #2      RouteApp.build.&lt;anonymous closure&gt; (package:flutterapp/navigator/navigator_attention.dart:31:27)</span></span><br><span class="line"><span class="comment">                    #3      _InkResponseState._handleTap (package:flutter/src/material/ink_well.dart:705:14)</span></span><br><span class="line"><span class="comment">                    #4      _InkResponseState.build.&lt;anonymous closure&gt; (package:flutter/src/material/ink_well.dart:788:36)</span></span><br><span class="line"><span class="comment">                    ...</span></span><br><span class="line"><span class="comment">                    Handler: "onTap"</span></span><br><span class="line"><span class="comment">                    Recognizer: TapGestureRecognizer#4fb4f</span></span><br><span class="line"><span class="comment">                    debugOwner: GestureDetector</span></span><br><span class="line"><span class="comment">                    state: possible</span></span><br><span class="line"><span class="comment">                    won arena</span></span><br><span class="line"><span class="comment">                    finalPosition: Offset(78.2, 125.8)</span></span><br><span class="line"><span class="comment">                    finalLocalPosition: Offset(78.2, 19.8)</span></span><br><span class="line"><span class="comment">                    button: 1</span></span><br><span class="line"><span class="comment">                    sent tap down</span></span><br><span class="line"><span class="comment">                    ════════════════════════════════════════════════════════════════════════════════════════════════════</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">                 */</span></span><br><span class="line">                Navigator.of(context).push(MaterialPageRoute(builder: (_) &#123;</span><br><span class="line">                  <span class="keyword">return</span> RouteSecondPage0();</span><br><span class="line">                &#125;));</span><br><span class="line"></span><br><span class="line">              <span class="comment">/// 即使传进rootNavigator为true也不行</span></span><br><span class="line"><span class="comment">//                Navigator.of(context, rootNavigator: true)</span></span><br><span class="line"><span class="comment">//                    .push(MaterialPageRoute(builder: (_) &#123;</span></span><br><span class="line"><span class="comment">//                  return RouteSecondPage0();</span></span><br><span class="line"><span class="comment">//                &#125;));</span></span><br><span class="line">              &#125;,</span><br><span class="line">              child: Text(<span class="string">"想要跳转第二页"</span>),</span><br><span class="line">            ),</span><br><span class="line">          ],</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RouteSecondPage0</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Text(<span class="string">"22222"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="解决方案一：添加一层Builder进行封装"><a href="#解决方案一：添加一层Builder进行封装" class="headerlink" title="解决方案一：添加一层Builder进行封装"></a>解决方案一：添加一层Builder进行封装</h1><p>通过Builder来创建RaisedButton<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RouteApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">"Flutter navigator attention problem occurs"</span>,</span><br><span class="line">      home: Scaffold(</span><br><span class="line">        appBar: AppBar(</span><br><span class="line">          title: Text(<span class="string">"主页：有问题的—&gt; 方案一：Builder"</span>),</span><br><span class="line">        ),</span><br><span class="line">        body: Column(</span><br><span class="line">          children: &lt;Widget&gt;[</span><br><span class="line">            Text(<span class="string">"第一行"</span>),</span><br><span class="line"></span><br><span class="line">            <span class="comment">/// 添加Builder封装</span></span><br><span class="line">            Builder(builder: (context) &#123;</span><br><span class="line">              <span class="keyword">return</span> RaisedButton(</span><br><span class="line">                onPressed: () &#123;</span><br><span class="line">                  Navigator.of(context).push(MaterialPageRoute(builder: (_) &#123;</span><br><span class="line">                    <span class="keyword">return</span> RouteSecondPage0();</span><br><span class="line">                  &#125;));</span><br><span class="line">                &#125;,</span><br><span class="line">                child: Text(<span class="string">"想要跳转第二页"</span>),</span><br><span class="line">              );</span><br><span class="line">            &#125;),</span><br><span class="line">          ],</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="解决方案二：将第一个内容页面再次抽取"><a href="#解决方案二：将第一个内容页面再次抽取" class="headerlink" title="解决方案二：将第一个内容页面再次抽取"></a>解决方案二：将第一个内容页面再次抽取</h1><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RouteApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">"Flutter Navigator Attention"</span>,</span><br><span class="line">      home: RouteMainPage(),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RouteMainPage</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(<span class="string">"第一页:独立的RouteMainPage"</span>),</span><br><span class="line">      ),</span><br><span class="line">      body: Column(</span><br><span class="line">        children: &lt;Widget&gt;[</span><br><span class="line">          Text(<span class="string">"主页第一行"</span>),</span><br><span class="line">          RaisedButton(</span><br><span class="line">            onPressed: () &#123;</span><br><span class="line"><span class="comment">//              Navigator.of(context).push(MaterialPageRoute(builder: (_) &#123;</span></span><br><span class="line"><span class="comment">//                return RouteSecondPage0();</span></span><br><span class="line"><span class="comment">//              &#125;));</span></span><br><span class="line">              Navigator.push(context, MaterialPageRoute(builder: (_) &#123;</span><br><span class="line">                <span class="keyword">return</span> RouteSecondPage();</span><br><span class="line">              &#125;));</span><br><span class="line">            &#125;,</span><br><span class="line">            child: Text(<span class="string">"跳转到第二页"</span>),</span><br><span class="line">          )</span><br><span class="line">        ],</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="解决方案三："><a href="#解决方案三：" class="headerlink" title="解决方案三："></a>解决方案三：</h1><p>使用GlobalKey<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RouteApp1</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> GlobalKey&lt;NavigatorState&gt; navigatorKey = GlobalKey();</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      <span class="comment">/// 指定路由器widget的key</span></span><br><span class="line">      navigatorKey: navigatorKey,</span><br><span class="line">      title: <span class="string">"Flutter Navigator Attention"</span>,</span><br><span class="line">      home: Scaffold(</span><br><span class="line">        appBar: AppBar(</span><br><span class="line">          title: Text(<span class="string">"主页：解决方案三"</span>),</span><br><span class="line">        ),</span><br><span class="line">        body: Column(</span><br><span class="line">          children: &lt;Widget&gt;[</span><br><span class="line">            Text(<span class="string">"主页第一行"</span>),</span><br><span class="line">            RaisedButton(</span><br><span class="line">              onPressed: () &#123;</span><br><span class="line">                <span class="comment">//    使用navigatorKey来跳转</span></span><br><span class="line">                navigatorKey.currentState.push(MaterialPageRoute(builder: (_) &#123;</span><br><span class="line">                  <span class="keyword">return</span> RouteSecondPage();</span><br><span class="line">                &#125;));</span><br><span class="line">              &#125;,</span><br><span class="line">              child: Text(<span class="string">"跳转第二页"</span>),</span><br><span class="line">            ),</span><br><span class="line">          ],</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+<div>
+  
+</div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.freelabor.work/2020/06/03/CDE851D8-1C0F-4777-8091-165FA1600362/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="GC">
+      <meta itemprop="description" content="Seeking the World!">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GC World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/06/03/CDE851D8-1C0F-4777-8091-165FA1600362/" class="post-title-link" itemprop="url">2.3 自定义路由切换动画</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-06-03 14:22:52" itemprop="dateCreated datePublished" datetime="2020-06-03T14:22:52+08:00">2020-06-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-06-04 14:51:06" itemprop="dateModified" datetime="2020-06-04T14:51:06+08:00">2020-06-04</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="使用PageRouteBuilder自定义动画"><a href="#使用PageRouteBuilder自定义动画" class="headerlink" title="使用PageRouteBuilder自定义动画"></a>使用PageRouteBuilder自定义动画</h1><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomMainRoute</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(<span class="string">"主页—&gt; 自定义路由动画"</span>),</span><br><span class="line">      ),</span><br><span class="line">      body: Column(</span><br><span class="line">        children: &lt;Widget&gt;[</span><br><span class="line">          Text(<span class="string">"主页第一行"</span>),</span><br><span class="line">          RaisedButton(</span><br><span class="line">            onPressed: () &#123;</span><br><span class="line"><span class="comment">//              Navigator.push(context, MaterialPageRoute(builder: (context) &#123;</span></span><br><span class="line"><span class="comment">//                return SecondAnimatedRoutePage();</span></span><br><span class="line"><span class="comment">//              &#125;));</span></span><br><span class="line">              <span class="comment">/// 使用PageRouteBuilder</span></span><br><span class="line">              Navigator.push(</span><br><span class="line">                  context,</span><br><span class="line">                  PageRouteBuilder(</span><br><span class="line">                      transitionDuration: <span class="built_in">Duration</span>(milliseconds: <span class="number">800</span>),<span class="comment">/// 设置过渡时间</span></span><br><span class="line">                      pageBuilder: (BuildContext context,</span><br><span class="line">                          Animation&lt;<span class="built_in">double</span>&gt; animation,</span><br><span class="line">                          Animation&lt;<span class="built_in">double</span>&gt; secondaryAnimation) &#123;</span><br><span class="line">                        <span class="comment">/// 平移动画</span></span><br><span class="line">                        <span class="keyword">return</span> SlideTransition(</span><br><span class="line">                          <span class="comment">/// 补间动画</span></span><br><span class="line">                          position: Tween&lt;Offset&gt;(</span><br><span class="line">                            <span class="comment">/// 从右往左</span></span><br><span class="line"><span class="comment">//                    begin: const Offset(1.0, 0.0),</span></span><br><span class="line"><span class="comment">//                    end: const Offset(0.0, 0.0),</span></span><br><span class="line">                            <span class="comment">/// 从下往上 ，将第二页的app bar隐藏掉</span></span><br><span class="line">                            begin: <span class="keyword">const</span> Offset(<span class="number">0.0</span>, <span class="number">1.0</span>),</span><br><span class="line">                            end: <span class="keyword">const</span> Offset(<span class="number">0.0</span>, <span class="number">0.0</span>),</span><br><span class="line">                          ).animate(animation),</span><br><span class="line">                          child: SecondAnimatedRoutePage(),</span><br><span class="line">                        );</span><br><span class="line">                      &#125;));</span><br><span class="line">            &#125;,</span><br><span class="line">            child: Text(<span class="string">"跳转到第二页"</span>),</span><br><span class="line">          ),</span><br><span class="line">        ],</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="PageRouteBuilder-解析"><a href="#PageRouteBuilder-解析" class="headerlink" title="PageRouteBuilder 解析"></a>PageRouteBuilder 解析</h1><ul>
+<li><p>必须要传递pageBuilder：RoutePageBuilder<br>包含三个参数：</p>
+<ol>
+<li>BuildContext context</li>
+<li>Animation<double> animation</double></li>
+<li>Animation<double> secondaryAnimation<br>需要返回一个AnimatedWidget</double></li>
+</ol>
+<ul>
+<li>SlideTransition</li>
+<li>RotationTransition</li>
+<li>ScaleTransition</li>
+<li>PositionedTransition</li>
+</ul>
+</li>
+<li><p>transitionDuration 设置动画过渡时间</p>
+</li>
+</ul>
+<h1 id="SlideTransition解析"><a href="#SlideTransition解析" class="headerlink" title="SlideTransition解析"></a>SlideTransition解析</h1><ul>
+<li>必须要传递：position: Animatio—&gt; Tween</li>
+<li>child: 传递要跳转的页面</li>
+</ul>
+<h1 id="Offset：二维点偏移量对象"><a href="#Offset：二维点偏移量对象" class="headerlink" title="Offset：二维点偏移量对象"></a>Offset：二维点偏移量对象</h1><h1 id="动画组合"><a href="#动画组合" class="headerlink" title="动画组合"></a>动画组合</h1><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomMainRouteCombine</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(<span class="string">"主页—&gt; 自定义路由动画"</span>),</span><br><span class="line">      ),</span><br><span class="line">      body: Column(</span><br><span class="line">        children: &lt;Widget&gt;[</span><br><span class="line">          Text(<span class="string">"主页第一行"</span>),</span><br><span class="line">          RaisedButton(</span><br><span class="line">            onPressed: () &#123;</span><br><span class="line"><span class="comment">//              Navigator.push(context, MaterialPageRoute(builder: (context) &#123;</span></span><br><span class="line"><span class="comment">//                return SecondAnimatedRoutePage();</span></span><br><span class="line"><span class="comment">//              &#125;));</span></span><br><span class="line">              <span class="comment">/// 使用PageRouteBuilder</span></span><br><span class="line">              Navigator.push(</span><br><span class="line">                  context,</span><br><span class="line">                  PageRouteBuilder(</span><br><span class="line">                      transitionDuration: <span class="built_in">Duration</span>(milliseconds: <span class="number">800</span>),</span><br><span class="line"></span><br><span class="line">                      <span class="comment">/// 设置过渡时间</span></span><br><span class="line">                      pageBuilder: (BuildContext context,</span><br><span class="line">                          Animation&lt;<span class="built_in">double</span>&gt; animation,</span><br><span class="line">                          Animation&lt;<span class="built_in">double</span>&gt; secondaryAnimation) &#123;</span><br><span class="line">                        <span class="keyword">return</span> FadeTransition(</span><br><span class="line">                          opacity: animation,</span><br><span class="line">                          child: RotationTransition(</span><br><span class="line">                            turns: Tween&lt;<span class="built_in">double</span>&gt;(</span><br><span class="line">                              begin: <span class="number">0.5</span>,</span><br><span class="line">                              end: <span class="number">1.0</span>,</span><br><span class="line">                            ).animate(animation),</span><br><span class="line">                            child: SecondAnimatedRoutePage(),</span><br><span class="line">                          ),</span><br><span class="line">                        );</span><br><span class="line">                      &#125;));</span><br><span class="line">            &#125;,</span><br><span class="line">            child: Text(<span class="string">"跳转到第二页"</span>),</span><br><span class="line">          ),</span><br><span class="line">        ],</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+<div>
+  
+</div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.freelabor.work/2020/06/02/6CDBCAF6-5FB4-4041-8E2C-36101B4F2746/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="GC">
+      <meta itemprop="description" content="Seeking the World!">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GC World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/06/02/6CDBCAF6-5FB4-4041-8E2C-36101B4F2746/" class="post-title-link" itemprop="url">2.2 Flutter-命名路由</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-06-02 15:40:53" itemprop="dateCreated datePublished" datetime="2020-06-02T15:40:53+08:00">2020-06-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-06-04 14:51:06" itemprop="dateModified" datetime="2020-06-04T14:51:06+08:00">2020-06-04</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>给路由起一个名字，然后可以通过路由名字直接打开新的路由。</p>
+<h1 id="注册路由"><a href="#注册路由" class="headerlink" title="注册路由"></a>注册路由</h1><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NameRouteApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">"Flutter Named Router Demo"</span>,</span><br><span class="line"></span><br><span class="line">      <span class="comment">/// 注册路由表</span></span><br><span class="line">      routes: &#123;</span><br><span class="line">        <span class="comment">/// ‘/’是一个特殊地质，特指第一个页面</span></span><br><span class="line">        <span class="string">"/"</span>: (context) =&gt; MainNamedRoute(),</span><br><span class="line">        <span class="string">"second_page"</span>: (context) =&gt; SecondNamedRoutePage(),</span><br><span class="line">      &#125;,</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="通过Navigator-pushNamed-跳转到下一页"><a href="#通过Navigator-pushNamed-跳转到下一页" class="headerlink" title="通过Navigator.pushNamed()跳转到下一页"></a>通过<code>Navigator.pushNamed()</code>跳转到下一页</h1><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainNamedRoute</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(<span class="string">"命名路由的主页"</span>),</span><br><span class="line">      ),</span><br><span class="line">      body: Column(</span><br><span class="line">        children: &lt;Widget&gt;[</span><br><span class="line">          Text(<span class="string">"主页第一行"</span>),</span><br><span class="line">          RaisedButton(</span><br><span class="line">            onPressed: () &#123;</span><br><span class="line">              Navigator.pushNamed(context, <span class="string">"second_page"</span>);</span><br><span class="line">            &#125;,</span><br><span class="line">            child: Text(<span class="string">"进入命名路由的第二个页面"</span>),</span><br><span class="line">          ),</span><br><span class="line">        ],</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="简单结束页面Navigator-pop"><a href="#简单结束页面Navigator-pop" class="headerlink" title="简单结束页面Navigator.pop()"></a>简单结束页面<code>Navigator.pop()</code></h1><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SecondNamedRoutePage</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(<span class="string">"命名路由第二个页面"</span>),</span><br><span class="line">      ),</span><br><span class="line">      body: Column(</span><br><span class="line">        children: &lt;Widget&gt;[</span><br><span class="line">          Text(<span class="string">"第二页的第一行"</span>),</span><br><span class="line">          RaisedButton(</span><br><span class="line">            onPressed: () &#123;</span><br><span class="line">              <span class="comment">//    结束当前页面</span></span><br><span class="line">              Navigator.pop(context);</span><br><span class="line">            &#125;,</span><br><span class="line">            child: Text(<span class="string">"结束当前页面"</span>),</span><br><span class="line">          ),</span><br><span class="line">        ],</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h1><p>优点：可以通过语义化的字符串来管理路由。<br>缺点：不能直接传递路由参数。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+<div>
+  
+</div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.freelabor.work/2020/06/02/AC69EF57-F25D-4CD1-B0F6-6634782E73F8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="GC">
+      <meta itemprop="description" content="Seeking the World!">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GC World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/06/02/AC69EF57-F25D-4CD1-B0F6-6634782E73F8/" class="post-title-link" itemprop="url">2.1 Flutter-路由导航</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-06-02 15:38:06" itemprop="dateCreated datePublished" datetime="2020-06-02T15:38:06+08:00">2020-06-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-06-04 14:51:06" itemprop="dateModified" datetime="2020-06-04T14:51:06+08:00">2020-06-04</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="路由管理"><a href="#路由管理" class="headerlink" title="路由管理"></a>路由管理</h1><ol>
+<li><p>主要通过Navigator跳转到下一个widget,<code>Navigator.push()</code></p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Navigator.push(context, MaterialPageRoute(builder: (context) &#123;</span><br><span class="line">  <span class="keyword">return</span> SecondRoute();</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入到第二个页面，结束当前那个widget,<code>Navigator.pop()</code></p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Navigator.pop(context);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'dart:io'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/foundation.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  FlutterError.onError = (FlutterErrorDetails details) &#123;</span><br><span class="line">    FlutterError.dumpErrorToConsole(details);</span><br><span class="line">    <span class="keyword">if</span> (kReleaseMode) exit(<span class="number">1</span>);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  runApp(NavigatorApp());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NavigatorApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">"Flutter Navigator Demo"</span>,</span><br><span class="line">      home: MainRoute(),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainRoute</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(<span class="string">"主页"</span>),</span><br><span class="line">      ),</span><br><span class="line">      body: Column(</span><br><span class="line">        children: &lt;Widget&gt;[</span><br><span class="line">          Text(<span class="string">"第一个页面"</span>),</span><br><span class="line">          Text(<span class="string">"第二行"</span>),</span><br><span class="line">          Text(<span class="string">"第三行"</span>),</span><br><span class="line">          RaisedButton(</span><br><span class="line">            onPressed: () &#123;</span><br><span class="line">              <span class="comment">/// 跳转到下一个页面</span></span><br><span class="line">              Navigator.push(context, MaterialPageRoute(builder: (context) &#123;</span><br><span class="line">                <span class="keyword">return</span> SecondRoute();</span><br><span class="line">              &#125;));</span><br><span class="line">            &#125;,</span><br><span class="line">            child: Text(<span class="string">"进入第二页"</span>),</span><br><span class="line">          ),</span><br><span class="line">        ],</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SecondRoute</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(<span class="string">"第二个页面"</span>),</span><br><span class="line">      ),</span><br><span class="line">      body: Column(</span><br><span class="line">        children: &lt;Widget&gt;[</span><br><span class="line">          Text(<span class="string">"这里是第二个页面的第一行"</span>),</span><br><span class="line">          RaisedButton(</span><br><span class="line">            onPressed: () &#123;</span><br><span class="line">              <span class="comment">/// 结束当前页面</span></span><br><span class="line">              Navigator.pop(context);</span><br><span class="line">            &#125;,</span><br><span class="line">            child: Text(<span class="string">"结束此页面"</span>),</span><br><span class="line">          ),</span><br><span class="line">        ],</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h1><p><img src="quiver-image-url/AAF570D11D930B028E3C3AE96D6FC577.jpg =301x639" alt="第一页"><br>点击“进入第二页”按钮后<br><img src="quiver-image-url/3F215745089BCEE96267BBEC52CF884B.jpg =301x639" alt="第二页"></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+<div>
+  
+</div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.freelabor.work/2020/06/02/A0C7D1BC-B847-4445-AACD-F0D539724A25/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -439,12 +1113,24 @@
                 
               
 
-              <time title="Created: 2020-06-02 10:46:01 / Modified: 11:01:28" itemprop="dateCreated datePublished" datetime="2020-06-02T10:46:01+08:00">2020-06-02</time>
+              <time title="Created: 2020-06-02 10:46:01" itemprop="dateCreated datePublished" datetime="2020-06-02T10:46:01+08:00">2020-06-02</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-06-04 14:51:06" itemprop="dateModified" datetime="2020-06-04T14:51:06+08:00">2020-06-04</time>
               
             
           </span>
@@ -605,7 +1291,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2020-06-02 11:01:28" itemprop="dateModified" datetime="2020-06-02T11:01:28+08:00">2020-06-02</time>
+                <time title="Modified: 2020-06-04 14:51:06" itemprop="dateModified" datetime="2020-06-04T14:51:06+08:00">2020-06-04</time>
               
             
           </span>
@@ -772,7 +1458,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2020-06-02 11:01:28" itemprop="dateModified" datetime="2020-06-02T11:01:28+08:00">2020-06-02</time>
+                <time title="Modified: 2020-06-04 14:51:06" itemprop="dateModified" datetime="2020-06-04T14:51:06+08:00">2020-06-04</time>
               
             
           </span>
@@ -943,7 +1629,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2020-06-02 11:01:28" itemprop="dateModified" datetime="2020-06-02T11:01:28+08:00">2020-06-02</time>
+                <time title="Modified: 2020-06-04 14:51:06" itemprop="dateModified" datetime="2020-06-04T14:51:06+08:00">2020-06-04</time>
               
             
           </span>
@@ -1069,7 +1755,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1088,7 +1774,17 @@
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>

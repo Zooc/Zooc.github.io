@@ -96,18 +96,21 @@
 
 
 
-  <meta name="description" content="定义注解12345@Target(ElementType.FIELD)@Retention(RetentionPolicy.RUNTIME)public @interface InjectView &amp;#123;    @IdRes int value();&amp;#125; 定义注入工具类1234567891011121314151617181920212223242526272829303132333">
-<meta name="keywords" content="java,java进阶">
+  <meta name="description" content="路由管理 主要通过Navigator跳转到下一个widget,Navigator.push() 123Navigator.push(context, MaterialPageRoute(builder: (context) &amp;#123;  return SecondRoute();&amp;#125;));  进入到第二个页面，结束当前那个widget,Navigator.pop() 1Navigator">
+<meta name="keywords" content="flutter,flutter-路由">
 <meta property="og:type" content="article">
-<meta property="og:title" content="模仿ButterKnife的BindView">
-<meta property="og:url" content="http://www.freelabor.work/2020/05/19/F608C5DA-7844-41C9-B5CB-9306298CEDEF/index.html">
+<meta property="og:title" content="2.1 Flutter-路由导航">
+<meta property="og:url" content="http://www.freelabor.work/2020/06/02/AC69EF57-F25D-4CD1-B0F6-6634782E73F8/index.html">
 <meta property="og:site_name" content="GC World">
-<meta property="og:description" content="定义注解12345@Target(ElementType.FIELD)@Retention(RetentionPolicy.RUNTIME)public @interface InjectView &amp;#123;    @IdRes int value();&amp;#125; 定义注入工具类1234567891011121314151617181920212223242526272829303132333">
+<meta property="og:description" content="路由管理 主要通过Navigator跳转到下一个widget,Navigator.push() 123Navigator.push(context, MaterialPageRoute(builder: (context) &amp;#123;  return SecondRoute();&amp;#125;));  进入到第二个页面，结束当前那个widget,Navigator.pop() 1Navigator">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-06-04T06:51:06.299Z">
+<meta property="og:image" content="http://www.freelabor.work/2020/06/02/AC69EF57-F25D-4CD1-B0F6-6634782E73F8/quiver-image-url/AAF570D11D930B028E3C3AE96D6FC577.jpg%20=301x639">
+<meta property="og:image" content="http://www.freelabor.work/2020/06/02/AC69EF57-F25D-4CD1-B0F6-6634782E73F8/quiver-image-url/3F215745089BCEE96267BBEC52CF884B.jpg%20=301x639">
+<meta property="og:updated_time" content="2020-06-04T06:51:06.295Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="模仿ButterKnife的BindView">
-<meta name="twitter:description" content="定义注解12345@Target(ElementType.FIELD)@Retention(RetentionPolicy.RUNTIME)public @interface InjectView &amp;#123;    @IdRes int value();&amp;#125; 定义注入工具类1234567891011121314151617181920212223242526272829303132333">
+<meta name="twitter:title" content="2.1 Flutter-路由导航">
+<meta name="twitter:description" content="路由管理 主要通过Navigator跳转到下一个widget,Navigator.push() 123Navigator.push(context, MaterialPageRoute(builder: (context) &amp;#123;  return SecondRoute();&amp;#125;));  进入到第二个页面，结束当前那个widget,Navigator.pop() 1Navigator">
+<meta name="twitter:image" content="http://www.freelabor.work/2020/06/02/AC69EF57-F25D-4CD1-B0F6-6634782E73F8/quiver-image-url/AAF570D11D930B028E3C3AE96D6FC577.jpg%20=301x639">
 
 
 
@@ -117,7 +120,7 @@
 
   
   
-  <link rel="canonical" href="http://www.freelabor.work/2020/05/19/F608C5DA-7844-41C9-B5CB-9306298CEDEF/">
+  <link rel="canonical" href="http://www.freelabor.work/2020/06/02/AC69EF57-F25D-4CD1-B0F6-6634782E73F8/">
 
 
 
@@ -127,7 +130,7 @@
   };
 </script>
 
-  <title>模仿ButterKnife的BindView | GC World</title>
+  <title>2.1 Flutter-路由导航 | GC World</title>
   
 
 
@@ -394,7 +397,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.freelabor.work/2020/05/19/F608C5DA-7844-41C9-B5CB-9306298CEDEF/">
+    <link itemprop="mainEntityOfPage" href="http://www.freelabor.work/2020/06/02/AC69EF57-F25D-4CD1-B0F6-6634782E73F8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="GC">
@@ -411,7 +414,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">模仿ButterKnife的BindView
+          <h1 class="post-title" itemprop="name headline">2.1 Flutter-路由导航
 
               
             
@@ -437,7 +440,7 @@
                 
               
 
-              <time title="Created: 2020-05-19 15:50:41" itemprop="dateCreated datePublished" datetime="2020-05-19T15:50:41+08:00">2020-05-19</time>
+              <time title="Created: 2020-06-02 15:38:06" itemprop="dateCreated datePublished" datetime="2020-06-02T15:38:06+08:00">2020-06-02</time>
             
 
             
@@ -488,9 +491,16 @@
       
 
       
-        <h1 id="定义注解"><a href="#定义注解" class="headerlink" title="定义注解"></a>定义注解</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.FIELD)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> InjectView &#123;</span><br><span class="line">    <span class="meta">@IdRes</span> <span class="function"><span class="keyword">int</span> <span class="title">value</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="定义注入工具类"><a href="#定义注入工具类" class="headerlink" title="定义注入工具类"></a>定义注入工具类</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InjectUtils</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">InjectUtils</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//no instance</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">inject</span><span class="params">(Activity activity)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 获取所有成员变量</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        Field[] declaredFields = activity.getClass().getDeclaredFields();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (declaredFields != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (Field f :</span><br><span class="line">                    declaredFields) &#123;</span><br><span class="line">                <span class="keyword">if</span> (f != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="comment">/**</span></span><br><span class="line"><span class="comment">                     * 判断是否存在&#123;<span class="doctag">@link</span> InjectView&#125;的注解</span></span><br><span class="line"><span class="comment">                     */</span></span><br><span class="line">                    <span class="keyword">if</span> (f.isAnnotationPresent(InjectView.class)) &#123;</span><br><span class="line">                        InjectView annotation = f.getAnnotation(InjectView.class);<span class="comment">//    拿到对应的注解</span></span><br><span class="line">                        <span class="keyword">int</span> id = ((InjectView) annotation).value();<span class="comment">//    获取到对应的id值</span></span><br><span class="line">                        View v = activity.findViewById(id);<span class="comment">//    通过activity找到view</span></span><br><span class="line">                        <span class="keyword">try</span> &#123;</span><br><span class="line">                            f.setAccessible(<span class="keyword">true</span>);<span class="comment">//    暴力设置成员变量可访问</span></span><br><span class="line">                            f.set(activity, v);<span class="comment">//    通过反射设置成员变量的值</span></span><br><span class="line">                        &#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</span><br><span class="line">                            e.printStackTrace();</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="在Activity页面使用注解并且初始化注入方法"><a href="#在Activity页面使用注解并且初始化注入方法" class="headerlink" title="在Activity页面使用注解并且初始化注入方法"></a>在Activity页面使用注解并且初始化注入方法</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class MainActivity : AppCompatActivity() &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@InjectView</span>(R.id.nav_view)</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> navView: BottomNavigationView? = <span class="keyword">null</span>;</span><br><span class="line">    </span><br><span class="line">     <span class="function">override fun <span class="title">onCreate</span><span class="params">(savedInstanceState: Bundle?)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_main)</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//    自定义注入工具</span></span><br><span class="line">        InjectUtils.inject(<span class="keyword">this</span>)</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="路由管理"><a href="#路由管理" class="headerlink" title="路由管理"></a>路由管理</h1><ol>
+<li><p>主要通过Navigator跳转到下一个widget,<code>Navigator.push()</code></p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Navigator.push(context, MaterialPageRoute(builder: (context) &#123;</span><br><span class="line">  <span class="keyword">return</span> SecondRoute();</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入到第二个页面，结束当前那个widget,<code>Navigator.pop()</code></p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Navigator.pop(context);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'dart:io'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/foundation.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  FlutterError.onError = (FlutterErrorDetails details) &#123;</span><br><span class="line">    FlutterError.dumpErrorToConsole(details);</span><br><span class="line">    <span class="keyword">if</span> (kReleaseMode) exit(<span class="number">1</span>);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  runApp(NavigatorApp());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NavigatorApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">"Flutter Navigator Demo"</span>,</span><br><span class="line">      home: MainRoute(),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainRoute</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(<span class="string">"主页"</span>),</span><br><span class="line">      ),</span><br><span class="line">      body: Column(</span><br><span class="line">        children: &lt;Widget&gt;[</span><br><span class="line">          Text(<span class="string">"第一个页面"</span>),</span><br><span class="line">          Text(<span class="string">"第二行"</span>),</span><br><span class="line">          Text(<span class="string">"第三行"</span>),</span><br><span class="line">          RaisedButton(</span><br><span class="line">            onPressed: () &#123;</span><br><span class="line">              <span class="comment">/// 跳转到下一个页面</span></span><br><span class="line">              Navigator.push(context, MaterialPageRoute(builder: (context) &#123;</span><br><span class="line">                <span class="keyword">return</span> SecondRoute();</span><br><span class="line">              &#125;));</span><br><span class="line">            &#125;,</span><br><span class="line">            child: Text(<span class="string">"进入第二页"</span>),</span><br><span class="line">          ),</span><br><span class="line">        ],</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SecondRoute</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(<span class="string">"第二个页面"</span>),</span><br><span class="line">      ),</span><br><span class="line">      body: Column(</span><br><span class="line">        children: &lt;Widget&gt;[</span><br><span class="line">          Text(<span class="string">"这里是第二个页面的第一行"</span>),</span><br><span class="line">          RaisedButton(</span><br><span class="line">            onPressed: () &#123;</span><br><span class="line">              <span class="comment">/// 结束当前页面</span></span><br><span class="line">              Navigator.pop(context);</span><br><span class="line">            &#125;,</span><br><span class="line">            child: Text(<span class="string">"结束此页面"</span>),</span><br><span class="line">          ),</span><br><span class="line">        ],</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h1><p><img src="quiver-image-url/AAF570D11D930B028E3C3AE96D6FC577.jpg =301x639" alt="第一页"><br>点击“进入第二页”按钮后<br><img src="quiver-image-url/3F215745089BCEE96267BBEC52CF884B.jpg =301x639" alt="第二页"></p>
 
       
     </div>
@@ -525,9 +535,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
+            <a href="/tags/flutter/" rel="tag"><i class="fa fa-tag"></i> flutter</a>
           
-            <a href="/tags/java进阶/" rel="tag"><i class="fa fa-tag"></i> java进阶</a>
+            <a href="/tags/flutter-路由/" rel="tag"><i class="fa fa-tag"></i> flutter-路由</a>
           
         </div>
       
@@ -540,14 +550,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2020/06/02/A0C7D1BC-B847-4445-AACD-F0D539724A25/" rel="next" title="输出Java的Stack Element信息">
+                <i class="fa fa-chevron-left"></i> 输出Java的Stack Element信息
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/05/19/5E1BDC3B-57B1-4395-92D8-8B6AD5C4BA3D/" rel="prev" title="实现Intent注入工具">
-                实现Intent注入工具 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/06/02/6CDBCAF6-5FB4-4041-8E2C-36101B4F2746/" rel="prev" title="2.2 Flutter-命名路由">
+                2.2 Flutter-命名路由 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -691,7 +705,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#定义注解"><span class="nav-number">1.</span> <span class="nav-text">定义注解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义注入工具类"><span class="nav-number">2.</span> <span class="nav-text">定义注入工具类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在Activity页面使用注解并且初始化注入方法"><span class="nav-number">3.</span> <span class="nav-text">在Activity页面使用注解并且初始化注入方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#路由管理"><span class="nav-number">1.</span> <span class="nav-text">路由管理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Code"><span class="nav-number">2.</span> <span class="nav-text">Code</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#效果"><span class="nav-number">3.</span> <span class="nav-text">效果</span></a></li></ol></div>
             
 
           </div>
